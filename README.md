@@ -71,12 +71,9 @@ It then returns structured, human-readable summaries.
 
 ---
 
----
-
 ## Architecture
 
 ```bash
-text
 User Input (Streamlit Frontend)
           |
           v
@@ -147,3 +144,10 @@ grok_api_key = grok_api_key
 
 ---
 
+## Usage
+
+### Run Streamlit Frontend
+(in client folder)
+```bash
+streamlit run main.py 
+```
