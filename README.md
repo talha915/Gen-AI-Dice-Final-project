@@ -54,7 +54,7 @@ It then returns structured, human-readable summaries.
 ### Database Agent
 
 - Converts natural language questions to SQL  
-- Executes queries on SQLite database (e.g., `used_cars.db` or `customer_complaints.db`)  
+- Executes queries on SQLite database (e.g., `used_cars.db`)  
 - Returns structured, human-readable summaries  
 - Handles query rewriting if errors occur  
 
@@ -68,6 +68,8 @@ It then returns structured, human-readable summaries.
 
 - Determines whether a question should be answered by **Database Agent** or **Knowledge Base Agent**  
 - Integrates with LangGraph workflow to handle conditional paths  
+
+---
 
 ---
 
@@ -90,9 +92,8 @@ generate_human_readable_answer    |
   |                             |
    END                           END```
 
----
 
-### Node Descriptions
+## Node Descriptions
 
 - `check_relevance`: Determines if query should hit DB or KB
 - `convert_to_sql`: Converts NL to SQL
