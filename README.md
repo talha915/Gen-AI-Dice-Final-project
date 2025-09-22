@@ -75,6 +75,8 @@ It then returns structured, human-readable summaries.
 
 ## Architecture
 
+```
+bash
 text
 User Input (Streamlit Frontend)
           |
@@ -91,7 +93,7 @@ execute_sql                  generate_answer
 generate_human_readable_answer    |
   |                             |
    END                           END
-
+```
 
 ## Node Descriptions
 
@@ -130,3 +132,19 @@ venv\Scripts\activate      # Windows
 ```bash
 pip install -r requirements.txt
 ```
+
+## 4. Configure Environment Variables
+
+Create a .env file in the project server folder:
+```bash
+HUGGINGFACEHUB_API_TOKEN = HUGGINGFACEHUB_API_TOKEN
+grok_api_key = grok_api_key
+```
+
+## 5. Prepare Database
+
+- Place used_cars.db in the server/db/ folder
+- Ensure tables exist with appropriate columns for 
+
+---
+
