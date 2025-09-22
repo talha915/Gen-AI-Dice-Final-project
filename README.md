@@ -165,6 +165,7 @@ python run.py
 ---
 
 ## Project Structure
+```bash
 Gen-AI-Dice-Final-project/
 ├── app/
 │   ├── core/
@@ -178,6 +179,7 @@ Gen-AI-Dice-Final-project/
 ├── prompts.yaml                 # Prompts for LLMs
 ├── requirements.txt
 └── README.md
+```
 
 ---
 
