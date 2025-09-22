@@ -1,0 +1,70 @@
+name: CI/CD Docker Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    env:
+      DOCKER_BUILDKIT: 1
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: 3.11
+
+    - name: Cache pip
+      uses: actions/cache@v3
+      with:
+        path: ~/.cache/pip
+        key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+        restore-keys: |
+          ${{ runner.os }}-pip-
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Lint & type check
+      run: |
+        # Optional: add your linting / type checking
+        pip install flake8 mypy
+        flake8 server client
+        mypy server client
+
+    - name: Build Docker image
+      run: |
+        docker build -t gen-ai-dice:latest .
+
+    # Optional: Run Docker container and smoke test
+    - name: Run container
+      run: |
+        docker run -d -p 8000:8000 -p 8501:8501 --name gen-ai-dice-test gen-ai-dice:latest
+        sleep 10
+        curl -f http://localhost:8000/test
+        docker stop gen-ai-dice-test
+        docker rm gen-ai-dice-test
+
+    # Optional: Push to Docker Hub
+    # Uncomment and set secrets: DOCKERHUB_USERNAME & DOCKERHUB_TOKEN
+    # - name: Log in to Docker Hub
+    #   uses: docker/login-action@v2
+    #   with:
+    #     username: ${{ secrets.DOCKERHUB_USERNAME }}
+    #     password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    # - name: Push Docker image
+    #   run: |
+    #     docker tag gen-ai-dice:latest yourdockerhubusername/gen-ai-dice:latest
+    #     docker push yourdockerhubusername/gen-ai-dice:latest
