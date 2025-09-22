@@ -75,7 +75,7 @@ It then returns structured, human-readable summaries.
 
 ## Architecture
 
-```text
+text
 User Input (Streamlit Frontend)
           |
           v
@@ -90,7 +90,7 @@ execute_sql                  generate_answer
   |                             |
 generate_human_readable_answer    |
   |                             |
-   END                           END```
+   END                           END
 
 
 ## Node Descriptions
