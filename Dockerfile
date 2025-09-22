@@ -28,8 +28,8 @@ COPY server/ ./server/
 COPY client/ ./client/
 
 # Expose ports
-EXPOSE 8000  # FastAPI backend
-EXPOSE 8501  # Streamlit frontend
+EXPOSE 8000
+EXPOSE 8501
 
 # Set environment variables for Streamlit
 ENV STREAMLIT_SERVER_PORT=8501
@@ -37,3 +37,5 @@ ENV STREAMLIT_SERVER_HEADLESS=true
 
 # Default command: start FastAPI backend and Streamlit frontend
 CMD ["sh", "-c", "cd server && python run.py & streamlit run client/main.py --server.port 8501"]
+
+# How has the proportion of petrol vs diesel cars changed from 2018 to 2022?
