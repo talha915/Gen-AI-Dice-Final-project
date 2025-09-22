@@ -75,8 +75,7 @@ It then returns structured, human-readable summaries.
 
 ## Architecture
 
-```
-bash
+```bash
 text
 User Input (Streamlit Frontend)
           |
