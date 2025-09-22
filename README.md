@@ -21,7 +21,7 @@ The project integrates:
 4. [Setup Instructions](#setup-instructions)  
 5. [Usage](#usage)  
 6. [Project Structure](#project-structure)  
-7. [FastAPI Backend and Frontend Streamlit](#FastAPI-Backend)  
+7. [FastAPI Backend and Frontend Streamlit](#FastAPI-Backend-and-Frontend-Streamlit)  
 8. [License](#license)  
 
 ---
