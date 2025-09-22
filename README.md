@@ -89,3 +89,16 @@ execute_sql                  generate_answer
 generate_human_readable_answer    |
   |                             |
    END                           END
+
+---
+
+## Architecture
+
+- `check_relevance`: Determines if query should hit DB or KB  
+- `convert_to_sql`: Converts NL to SQL  
+- `execute_sql`: Runs SQL query  
+- `generate_human_readable_answer`: Formats query results  
+- `regenerate_query`: Handles query rewriting  
+- `generate_fallback_response`: Handles irrelevant queries  
+- `knowledge_base`: Handles KB queries  
+- `end_max_iterations`: Stops workflow after max retries
