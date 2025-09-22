@@ -21,7 +21,7 @@ The project integrates:
 4. [Setup Instructions](#setup-instructions)  
 5. [Usage](#usage)  
 6. [Project Structure](#project-structure)  
-7. [FastAPI Backend](#FastAPI-Backend)  
+7. [FastAPI Backend and Frontend Streamlit](#FastAPI-Backend)  
 8. [License](#license)  
 
 ---
@@ -144,7 +144,7 @@ grok_api_key = grok_api_key
 
 ---
 
-## Usage
+## 5. Usage
 
 ### Run Streamlit Frontend (in client folder)
 
@@ -164,7 +164,7 @@ python run.py
 
 ---
 
-## Project Structure
+## 6. Project Structure
 ```bash
 Gen-AI-Dice-Final-project/
 ├── app/
@@ -183,11 +183,39 @@ Gen-AI-Dice-Final-project/
 
 ---
 
-FastAPI Backend:
-/ingestion-pipeline: Ingest documents into Pinecone vector database
-/chatbot: Query KB or database via REST API
-/test: Simple health check endpoint
-Streamlit Frontend:
-Chat interface for database & KB questions
-Sidebar for uploading files and monitoring upload progress
-Maintains session state with chat history
+## 7. FastAPI Backend and Frontend Streamlit:
+
+### API endpoints
+- /ingestion-pipeline: Ingest documents into Pinecone vector database
+- /chatbot: Query KB or database via REST API
+- /test: Simple health check endpoint
+
+### Streamlit Frontend
+- Chat interface for database & KB questions
+- Sidebar for uploading files and monitoring upload progress
+- Maintains session state with chat history
+
+---
+
+## 8. License
+MIT License
+
+Copyright (c) 2025 Talha Zafar
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
