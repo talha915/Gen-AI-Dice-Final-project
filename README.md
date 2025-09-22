@@ -88,7 +88,7 @@ execute_sql                  generate_answer
   |                             |
 generate_human_readable_answer    |
   |                             |
-   END                           END
+   END                           END```
 
 ---
 
@@ -113,10 +113,10 @@ Follow these steps to set up and run the project locally:
 
 ```bash
 git clone https://github.com/talha915/Gen-AI-Dice-Final-project.git
-cd Gen-AI-Dice-Final-project
+cd Gen-AI-Dice-Final-project```
 
 ### 2. Create and activate virtual environment
 ```bash
 python -m venv venv
 source venv/bin/activate   # Linux/macOS
-venv\Scripts\activate      # Windows
+venv\Scripts\activate      # Windows```
