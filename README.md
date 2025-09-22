@@ -1,7 +1,15 @@
 # Gen-AI-Dice-Final-project
 Chatbot with Database &amp; Knowledge Base Agents using langgraph and streamlit
 
-A sophisticated chatbot system that allows users to query car data using natural language. The project integrates a **Streamlit frontend** with a **LangGraph-based workflow backend**, capable of answering queries via a **database** or a **knowledge base (RAG)**.
+A sophisticated chatbot system that allows users to query structured databases and unstructured knowledge bases using natural language.  
+
+The project integrates:
+
+- **Streamlit frontend** for chat interface and file uploads  
+- **FastAPI backend** for REST API endpoints  
+- **LangGraph workflow** to route queries between database and knowledge base  
+- **Chroma vector store** for knowledge base embeddings  
+- **SQLite database** for structured queries  
 
 ---
 
@@ -20,37 +28,46 @@ A sophisticated chatbot system that allows users to query car data using natural
 
 ## Project Overview
 
-This project allows users to ask questions in natural language about used cars. The system determines whether the query is **relevant to the database** or should be handled via a **knowledge base**. It supports:
+This project allows users to ask natural language questions about car data (or other datasets). The system decides if the query should go to:
 
-- Translating natural language queries into SQL
-- Executing queries on a SQLite database
-- Generating human-readable, executive-friendly summaries
-- Rewriting queries for better results
-- Handling irrelevant queries via a fallback or knowledge base
+- **Database Agent** (SQLite DB)  
+- **Knowledge Base Agent** (ChromaDB vector store)  
 
-The frontend is built using **Streamlit**, while the backend leverages **LangGraph** and **LangChain Groq LLMs** for decision-making and SQL generation.
+It then returns structured, human-readable summaries.  
 
 ---
 
 ## Features
 
-- **Database Querying**
-  - Converts natural language queries to SQL
-  - Executes SQL queries on a SQLite database
-  - Automatic query rewriting in case of errors
+### FastAPI Backend
 
-- **Knowledge Base Support**
-  - Queries answered from a RAG-based knowledge base if DB is irrelevant
+- **`/ingestion-pipeline`**: Ingest documents into Chroma vector database  
+- **`/chatbot`**: Query the knowledge base or database via REST API  
+- **`/test`**: Health check endpoint  
 
-- **Fallback and Error Handling**
-  - Provides fallback messages for irrelevant or unanswerable queries
-  - Limits maximum retry attempts
+### Streamlit Frontend
 
-- **Human-Readable Summaries**
-  - Converts raw SQL results into concise, readable answers
+- Chat interface for asking database and KB questions  
+- Sidebar for uploading files and monitoring upload progress  
+- Maintains session state with chat history  
 
-- **Frontend**
-  - Streamlit interface for easy user interaction
+### Database Agent
+
+- Converts natural language questions to SQL  
+- Executes queries on SQLite database (e.g., `used_cars.db` or `customer_complaints.db`)  
+- Returns structured, human-readable summaries  
+- Handles query rewriting if errors occur  
+
+### Knowledge Base Agent
+
+- Uses **Chroma vector store** with embeddings from HuggingFace  
+- Answers questions based on uploaded documents  
+- Provides fallback responses for irrelevant or unanswerable queries  
+
+### Routing Agent
+
+- Determines whether a question should be answered by **Database Agent** or **Knowledge Base Agent**  
+- Integrates with LangGraph workflow to handle conditional paths  
 
 ---
 
@@ -62,13 +79,13 @@ User Input (Streamlit Frontend)
           v
     check_relevance node (LangGraph)
           |
-  -----------------------
-  |                     |
-Database Path        Knowledge Base Path
-(convert_to_sql)     (RAGQueryEngine)
-  |                     |
-execute_sql          generate_answer
-  |
-generate_human_readable_answer
-  |
-   END
+  -------------------------------
+  |                             |
+Database Path                  KB Path
+(convert_to_sql)           (ChromaDB + RAG)
+  |                             |
+execute_sql                  generate_answer
+  |                             |
+generate_human_readable_answer    |
+  |                             |
+   END                           END
