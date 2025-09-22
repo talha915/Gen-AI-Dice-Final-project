@@ -51,7 +51,8 @@ jobs:
     - name: Run container
       run: |
         docker run -d -p 8000:8000 -p 8501:8501 --name gen-ai-dice-test gen-ai-dice:latest
-        sleep 10
+        echo "Waiting for FastAPI to start..."
+        sleep 15  # wait 15 seconds
         curl -f http://localhost:8000/test
         docker stop gen-ai-dice-test
         docker rm gen-ai-dice-test
