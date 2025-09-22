@@ -21,7 +21,7 @@ The project integrates:
 4. [Setup Instructions](#setup-instructions)  
 5. [Usage](#usage)  
 6. [Project Structure](#project-structure)  
-7. [Contributing](#contributing)  
+7. [FastAPI Backend](#FastAPI-Backend)  
 8. [License](#license)  
 
 ---
@@ -146,7 +146,7 @@ grok_api_key = grok_api_key
 
 ## Usage
 
-### Run Streamlit Frontend(in client folder)
+### Run Streamlit Frontend (in client folder)
 
 ```bash
 streamlit run main.py 
@@ -157,3 +157,35 @@ Input queries like:
 - "Show all petrol cars manufactured after 2018"
 - Upload PDF or DOCX documents in the sidebar to populate the knowledge base
 
+### Run FastAPI Backend (in server folder)
+```bash
+python run.py
+```
+
+---
+
+## Project Structure
+Gen-AI-Dice-Final-project/
+├── app/
+│   ├── core/
+│   │   ├── db_agent.py          # DatabaseAgent class
+│   │   ├── kb_query.py          # KnowledgeBase agent using ChromaDB
+│   │   └── models.py            # GraphState, structured output classes
+│   ├── main.py                  # FastAPI backend
+├── db/
+│   └── used_cars.db             # SQLite database
+├── frontend_app.py              # Streamlit frontend
+├── prompts.yaml                 # Prompts for LLMs
+├── requirements.txt
+└── README.md
+
+---
+
+FastAPI Backend:
+/ingestion-pipeline: Ingest documents into Pinecone vector database
+/chatbot: Query KB or database via REST API
+/test: Simple health check endpoint
+Streamlit Frontend:
+Chat interface for database & KB questions
+Sidebar for uploading files and monitoring upload progress
+Maintains session state with chat history
