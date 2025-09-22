@@ -103,3 +103,14 @@ generate_human_readable_answer    |
 - `knowledge_base`: Handles KB queries
 - `end_max_iterations`: Stops workflow after max retries
 
+---
+
+## Setup Instructions
+
+Follow these steps to set up and run the project locally:
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/talha915/Gen-AI-Dice-Final-project.git
+cd Gen-AI-Dice-Final-project
