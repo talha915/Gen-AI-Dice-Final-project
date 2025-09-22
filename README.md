@@ -146,8 +146,14 @@ grok_api_key = grok_api_key
 
 ## Usage
 
-### Run Streamlit Frontend
-(in client folder)
+### Run Streamlit Frontend(in client folder)
+
 ```bash
 streamlit run main.py 
 ```
+
+Input queries like:
+
+- "Show all petrol cars manufactured after 2018"
+- Upload PDF or DOCX documents in the sidebar to populate the knowledge base
+
