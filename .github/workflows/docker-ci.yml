@@ -52,7 +52,7 @@ jobs:
       run: |
         docker run -d -p 8000:8000 --name gen-ai-dice-test gen-ai-dice:latest
         echo "Waiting for FastAPI to start..."
-
+    
         for i in {1..30}; do
           if curl -s http://localhost:8000/test > /dev/null; then
             echo "✅ FastAPI is up!"
@@ -61,12 +61,10 @@ jobs:
           echo "⏳ Waiting for FastAPI... ($i/30)"
           sleep 2
         done
-
-        # Fail if endpoint never responded
-        curl -f http://localhost:8000/test
-
-        # Stop + cleanup
-        docker logs gen-ai-dice-test || true
+    
+        # Final check
+        curl -f http://localhost:8000/test || (docker logs gen-ai-dice-test && exit 1)
+    
         docker stop gen-ai-dice-test
         docker rm gen-ai-dice-test
 
