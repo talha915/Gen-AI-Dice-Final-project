@@ -10,3 +10,6 @@ langchain-huggingface
 chromadb
 langchain-community
 pandas
+python-multipart
+pypdf
+sentence-transformers
