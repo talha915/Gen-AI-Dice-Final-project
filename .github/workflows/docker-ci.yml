@@ -48,12 +48,25 @@ jobs:
         docker build -t gen-ai-dice:latest .
 
     # Optional: Run Docker container and smoke test
-    - name: Run container
+    - name: Run container and smoke test
       run: |
-        docker run -d -p 8000:8000 -p 8501:8501 --name gen-ai-dice-test gen-ai-dice:latest
+        docker run -d -p 8000:8000 --name gen-ai-dice-test gen-ai-dice:latest
         echo "Waiting for FastAPI to start..."
-        sleep 15  # wait 15 seconds
+
+        for i in {1..30}; do
+          if curl -s http://localhost:8000/test > /dev/null; then
+            echo "✅ FastAPI is up!"
+            break
+          fi
+          echo "⏳ Waiting for FastAPI... ($i/30)"
+          sleep 2
+        done
+
+        # Fail if endpoint never responded
         curl -f http://localhost:8000/test
+
+        # Stop + cleanup
+        docker logs gen-ai-dice-test || true
         docker stop gen-ai-dice-test
         docker rm gen-ai-dice-test
 
