@@ -13,3 +13,4 @@ pandas
 python-multipart
 pypdf
 sentence-transformers
+langgraph
